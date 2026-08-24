@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import numpy as np
 
-with open("classifier.pkl", "rb") as model_file:
+with open("https://github.com/SWS-ZERBOUT/streamlit-tuto/raw/refs/heads/main/classifier.pkl", "rb") as model_file:
     model = pickle.load(model_file)
 
 st.title("Iris Species Classifier")
