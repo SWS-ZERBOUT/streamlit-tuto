@@ -1,9 +1,14 @@
 import streamlit as st
 import pickle
 import numpy as np
+import requests
+from io import BytesIO
 
-with open("https://raw.githubusercontent.com/SWS-ZERBOUT/streamlit-tuto/main/classifier.pkl", "rb") as model_file:
-    model = pickle.load(model_file)
+MODEL_URL = "https://raw.githubusercontent.com/SWS-ZERBOUT/streamlit-tuto/main/classifier.pkl"
+
+response = requests.get(MODEL_URL, timeout=30)
+response.raise_for_status()
+model = pickle.load(BytesIO(response.content))
 
 st.title("Iris Species Classifier")
 st.write("Enter the flower measurements to classify the species.")
